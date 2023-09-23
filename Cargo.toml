@@ -8,3 +8,4 @@ edition = "2021"
 [lib]
 
 [dependencies]
+from-env-derive = { git = "https://github.com/wangjun861205/from-env-derive-rs" }
