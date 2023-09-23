@@ -1,6 +1,8 @@
 use std::env;
 use std::str::FromStr;
 
+pub use from_env_derive::FromEnvDerive;
+
 pub trait FromEnv
 where
     Self: Sized,
