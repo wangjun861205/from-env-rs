@@ -11,4 +11,4 @@ repository = "https://github.com/wangjun861205/from-env-rs"
 [lib]
 
 [dependencies]
-from-env-derive = { version = "*" }
+from-env-derive = "^0.1"
