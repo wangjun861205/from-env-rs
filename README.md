@@ -12,7 +12,7 @@ nb-from-env = "*"
 ### Usage
 
 ```rust
-use from_env::{FromEnv, FromEnvDerive}
+use nb_from_env::{FromEnv, FromEnvDerive}
 
 
 #[derive(FromEnvDerive)]
