@@ -12,7 +12,8 @@ dependencies = [
 [[package]]
 name = "from-env-derive"
 version = "0.1.0"
-source = "git+https://github.com/wangjun861205/from-env-derive-rs#babe0185e7009e6d784f2b4dfe263dca75a0d471"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "be83688e01b98b8a0ae36c74ced47e01586f53ba0203f21d52afdf0b36b293be"
 dependencies = [
  "proc-macro2",
  "quote",
