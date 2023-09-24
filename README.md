@@ -60,6 +60,8 @@ you can also implement `FromEnv` for your type
 If not specified, all environment variables name is the upper-case of field name:
 
 ```rust
+
+#[derive(FromEnvDerive)]
 struct MyConfig {
     my_var: String  // this will search for MY_VAR in environment varialbes
 }
@@ -68,12 +70,28 @@ struct MyConfig {
 but you can use `#[env_var]` tag to specify which environment variable is related to the field:
 
 ```rust
+
+#[derive(FromEnvDerive)]
 struct MyConfig {
     #[env_var(THE_REAL_NAME)] // this will search for THE_REAL_NAME in environment variables
     my_var: String
 }
 
 ```
+
+### Default Value
+
+You can specify default value for non-existing environment variable by `#[env_default]` tag:
+
+```rust
+struct MyConfig {
+    #[env_default("my default value")] // if MY_VAR not exists, "my default value" will assign to my_var
+    my_var: String
+}
+
+```
+
+note that, the type of default value must be string, value will be convert to correspond type in `from_env` function
 
 ### Optional Type Field
 
