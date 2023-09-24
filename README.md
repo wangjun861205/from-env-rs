@@ -5,7 +5,7 @@ This is a helper library which is dedicated to make extracting value from enviro
 add below line to cargo.toml which is in your project
 
 ```toml
-from-env = "*"
+nb-from-env = "*"
 
 ```
 

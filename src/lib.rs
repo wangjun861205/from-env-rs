@@ -5,6 +5,9 @@
 /// Basic usage:
 ///
 /// ```
+/// use nb_from_env::{FromEnv, FromEnvDerive};
+///
+/// #[derive(FromEnvDerive)]
 /// struct TestStruct {
 ///    name: String,
 ///    age: i32,
@@ -20,6 +23,9 @@
 /// With optional values:
 ///
 /// ```
+/// use nb_from_env::{FromEnv, FromEnvDerive};
+///
+/// #[derive(FromEnvDerive)]
 /// struct TestStruct {
 ///    name: String,
 ///    age: Option<i32>,
@@ -34,6 +40,9 @@
 /// Specify environment variable name:
 ///
 /// ```
+/// use nb_from_env::{FromEnv, FromEnvDerive};
+///
+/// #[derive(FromEnvDerive)]
 /// struct TestStruct {
 ///    #[env_var(FULL_NAME)]
 ///    name: String,
