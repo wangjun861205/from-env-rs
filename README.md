@@ -65,7 +65,7 @@ struct MyConfig {
 }
 ```
 
-but you can use `[env_var]` tag to specify which environment variable is related to the field:
+but you can use `#[env_var]` tag to specify which environment variable is related to the field:
 
 ```rust
 struct MyConfig {
