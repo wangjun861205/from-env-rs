@@ -1,3 +1,4 @@
+use core::panic;
 /// This is a helper library which is dedicated to make extracting value from environment variables easy.
 ///
 /// # Examples
@@ -60,150 +61,240 @@ pub trait FromEnv
 where
     Self: Sized,
 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self;
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self;
 }
 
 impl FromEnv for String {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
             return v;
         }
-        default.unwrap()
+        default.unwrap_or_else(|| panic!("{} is required", env_var))
     }
 }
 
 impl FromEnv for i8 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid i8 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var)
     }
 }
 
 impl FromEnv for i16 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid i16 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var)
     }
 }
 
 impl FromEnv for i32 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid i32 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var);
     }
 }
 
 impl FromEnv for i64 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid i64 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var)
     }
 }
 
 impl FromEnv for i128 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid i128 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var)
     }
 }
 
 impl FromEnv for u8 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid u8 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var)
     }
 }
 
 impl FromEnv for u16 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid u16 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var)
     }
 }
 
 impl FromEnv for u32 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid u32 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var);
     }
 }
 
 impl FromEnv for u64 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid u64 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var);
     }
 }
 
 impl FromEnv for u128 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid u128 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var);
     }
 }
 
 impl FromEnv for usize {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid usize literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var);
     }
 }
 
 impl FromEnv for isize {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid isize literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var)
     }
 }
 
 impl FromEnv for bool {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid bool literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var)
     }
 }
 
 impl FromEnv for f32 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid f32 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var);
     }
 }
 
 impl FromEnv for f64 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if let Some(v) = val {
-            return Self::from_str(&v).unwrap();
+            return Self::from_str(&v)
+                .unwrap_or_else(|e| panic!("{} is not a valid f64 literal: {}", v, e));
         }
-        Self::from_str(&default.unwrap()).unwrap()
+        if let Some(value) = default {
+            return Self::from_str(&value).unwrap_or_else(|e| {
+                panic!("failed to parse {}(value: {}): {}", env_var, value, e)
+            });
+        }
+        panic!("{} default value is not existing", env_var);
     }
 }
 
@@ -211,11 +302,11 @@ impl<T> FromEnv for Option<T>
 where
     T: FromEnv,
 {
-    fn from_env(val: Option<String>, default: Option<String>) -> Self {
+    fn from_env(env_var: &str, val: Option<String>, default: Option<String>) -> Self {
         if val.is_none() && default.is_none() {
             return None;
         }
-        Some(T::from_env(val, default))
+        Some(T::from_env(env_var, val, default))
     }
 }
 

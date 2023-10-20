@@ -4,9 +4,9 @@ version = 3
 
 [[package]]
 name = "from-env-derive"
-version = "0.2.0"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6d9885e748376288cec274a1a3f38f22778b045dc2aa404c7d30fad235c64a0c"
+checksum = "fe57facee65a96b072d1dcd4c6139c103fa72d03282aef7f7724cae3fe2003a6"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -15,16 +15,16 @@ dependencies = [
 
 [[package]]
 name = "nb-from-env"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "from-env-derive",
 ]
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.67"
+version = "1.0.69"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d433d9f1a3e8c1263d9456598b16fec66f4acc9a74dacffd35c7bb09b3a1328"
+checksum = "134c189feb4956b20f6f547d2cf727d4c0fe06722b20a0eec87ed445a97f92da"
 dependencies = [
  "unicode-ident",
 ]
@@ -40,9 +40,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.37"
+version = "2.0.38"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7303ef2c05cd654186cb250d29049a24840ca25d2747c25c0381c8d9e2f582e8"
+checksum = "e96b79aaa137db8f61e26363a0c9b47d8b4ec75da28b7d1d614c2303e232408b"
 dependencies = [
  "proc-macro2",
  "quote",
